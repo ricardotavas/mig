@@ -1,0 +1,51 @@
+t <form>
+t <text><id>f1</id>
+c o B <value>%d</value></text>
+t <text><id>t1</id>
+c o C <value>%d:%2d</value></text>
+t <text><id>f2</id>
+c o E <value>%d</value></text>
+t <text><id>t2</id>
+c o F <value>%d:%2d</value></text>
+t <text><id>f3</id>
+c o H <value>%d</value></text>
+t <text><id>t3</id>
+c o I <value>%d:%2d</value></text>
+t <text><id>f4</id>
+c o K <value>%d</value></text>
+t <text><id>t4</id>
+c o L <value>%d:%2d</value></text>
+t <text><id>f5</id>
+c o N <value>%d</value></text>
+t <text><id>t5</id>
+c o O <value>%d:%2d</value></text>
+t <text><id>f6</id>
+c o Q <value>%d</value></text>
+t <text><id>t6</id>
+c o R <value>%d:%2d</value></text>
+t <text><id>f7</id>
+c o T <value>%d</value></text>
+t <text><id>t7</id>
+c o U <value>%d:%2d</value></text>
+t <text><id>f8</id>
+c o W <value>%d</value></text>
+t <text><id>t8</id>
+c o X <value>%d:%2d</value></text>
+t <text><id>f9</id>
+c o Z <value>%d</value></text>
+t <text><id>t9</id>
+c o 0 <value>%d:%2d</value></text>
+t <text><id>f10</id>
+c o 2 <value>%d</value></text>
+t <text><id>t10</id>
+c o 3 <value>%d:%2d</value></text>
+t <text><id>f11</id>
+c o 5 <value>%d</value></text>
+t <text><id>t11</id>
+c o 6 <value>%d:%2d</value></text>
+t <text><id>f12</id>
+c o 8 <value>%d</value></text>
+t <text><id>t12</id>
+c o 9 <value>%d:%2d</value></text>
+t </form>
+.

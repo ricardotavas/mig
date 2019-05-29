@@ -1,0 +1,51 @@
+t <form>
+t <text><id>f1</id>
+c u B <value>%d</value></text>
+t <text><id>t1</id>
+c u C <value>%c%03d [%02d]</value></text>
+t <text><id>f2</id>
+c u E <value>%d</value></text>
+t <text><id>t2</id>
+c u F <value>%c%03d [%02d]</value></text>
+t <text><id>f3</id>
+c u H <value>%d</value></text>
+t <text><id>t3</id>
+c u I <value>%c%03d [%02d]</value></text>
+t <text><id>f4</id>
+c u K <value>%d</value></text>
+t <text><id>t4</id>
+c u L <value>%c%03d [%02d]</value></text>
+t <text><id>f5</id>
+c u N <value>%d</value></text>
+t <text><id>t5</id>
+c u O <value>%c%03d [%02d]</value></text>
+t <text><id>f6</id>
+c u Q <value>%d</value></text>
+t <text><id>t6</id>
+c u R <value>%c%03d [%02d]</value></text>
+t <text><id>f7</id>
+c u T <value>%d</value></text>
+t <text><id>t7</id>
+c u U <value>%c%03d [%02d]</value></text>
+t <text><id>f8</id>
+c u W <value>%d</value></text>
+t <text><id>t8</id>
+c u X <value>%c%03d [%02d]</value></text>
+t <text><id>f9</id>
+c u Z <value>%d</value></text>
+t <text><id>t9</id>
+c u 0 <value>%c%03d [%02d]</value></text>
+t <text><id>f10</id>
+c u 2 <value>%d</value></text>
+t <text><id>t10</id>
+c u 3 <value>%c%03d [%02d]</value></text>
+t <text><id>f11</id>
+c u 5 <value>%d</value></text>
+t <text><id>t11</id>
+c u 6 <value>%c%03d [%02d]</value></text>
+t <text><id>f12</id>
+c u 8 <value>%d</value></text>
+t <text><id>t12</id>
+c u 9 <value>%c%03d [%02d]</value></text>
+t </form>
+.

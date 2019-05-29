@@ -1,0 +1,310 @@
+<head><title>Ajuda</title></head>
+<link rel="icon" type="image/bmp" href="W.bmp" sizes="16x16">
+<script type="text/javascript">
+function sendMail() {
+    var link = "mailto:sacnet@wyma.com	"
+             + "&subject=" + escape("Duvidas do cliente (MIG6)")
+             + "&body=" + escape(document.getElementById('myText').value);
+    window.location.href = link;
+}
+</script>
+<body bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
+<div align=center style="width: 833; height: 470">
+<table style="border: 1px solid #000080" height=384 cellSpacing=0 cellPadding=0 width="815">
+ <tbody>
+  <tr bgColor=#C8C8C8>
+   <td style="border-bottom: 1px solid #000080" vAlign=center noWrap height=73 width="170">
+    <a href="http://www.wyma.com"><img border="0" src="WYMA.bmp" align="left" width="78" height="56"></a>
+   </td>
+   <td style="border-bottom: 1px solid #000080" vAlign=bottom noWrap height=70 margin=50 width="567">
+    <h2 align="center"><font face="verdana" color="#0000FF">Ajuda da impressora</font></h2>
+   </td>
+   <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="32"> 
+    <a href=""><img border="0" src="" width="0" height="0"></a>
+   </td>
+   <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="32"> 
+    <a href="index.htm"><img border="0" src="volta.gif" width="31" height="29"></a>
+   </td>
+   <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="16"> 
+    <a href=""><img border="0" src="" width="0" height="0"></a>
+   </td>
+  </tr>
+  <tr  bgColor=#E8E8E8>
+   <td colSpan=5 height=400 width="805">
+    <div align=center>
+    <center>
+     <table width="90%" border=0>
+      <tbody>
+       <tr  bgColor=#E8E8E8>
+        <td width="95%">
+          <table width="797" height="94" border="0" cellpadding="0" cellspacing="0"><tr><td align="left">
+          <font face="Verdana">
+			<br>
+		  	<font size="5"><center><u><b>Sistema</b></u></font></center>
+			<ul>
+			<li><font size="4"><b>Driver em uso</b></font></li>			
+			Escolha o drive que será usado pela impressora para gravar todos os arquivo do 
+			sistema e também os arquivos de relatórios, o drive padrão é a memória Flash interna, tendo também 
+			a opção de usar um SDCARD.<br>
+			<br>
+			<li><font size="4"><b>Ajustar data e hora do sistema</b></font></li>					
+			Selecionando esta opção ao confirmar o envio a data e a hora
+			do sistema serão enviadas para ajustar a impressora, esta informação é impressa no ticket do cliente.<br>
+			<br>
+			<li><font size="4"><b>Auto teste de impressão de ticket </b></font></li>				
+			Força a impressora a emitir tickets do departamento 1 em 
+			intervalos de 1 segundo para teste do sistema.<br>
+			<br>
+			<li><font size="4"><b>Tempo de vida útil do ticket</b></font></li>					
+			Este tempo impede que a senha seja fechada indevidamente ao gerar o 
+			relatório no fechamento, caso a senha ainda não tiver sido atendida, o ticket ainda ficará aberto para 
+			que possa ser chamado e somente deverá aparecer no relatório do dia seguinte.<br>
+			<br>
+			<li><font size="4"><b>Imprimir protocolo de atendimento</b></font></li>					
+			Esta opção é para integração com outros sistemas, fazendo com que este servidor MIG solicite
+			um número de protocolo de atendimento a um servidor de protocolos do cliente para imprimir
+			este número no rodapé do ticket do cliente.<br>
+			<br>
+			<li><font size="4"><b>Endereço IP do servidor de protocolo</b></font></li>					
+			Quando a opção imprimir número de protocolo estiver habilitada é necessário informar o IP do
+			servidor de protocolo do cliente para que este servidor MIG possa solicitar o número para impressão.<br>
+			<br>
+			<li><font size="4"><b>Controle de funcionamento</b></font></li>	
+			Permite controlar o horário de funcionamento do sistema de senhas, o sistema de senhas pode ser composto 
+			de teclados de chamada, painéis eletrônicos e acionadores, configurando estes parâmetros todos podem ser 
+			desligados no final do dia automáticamente.<br>
+			<b>Habilitar controle - </b>Habilita este controle de horário de funcionamento.<br>
+			<b>Horário para ligar e desligar - </b>Configure os horários inicial e final do atendimento, o sistema 
+			entrará em funcionamento somente dentro deste intervalo.<br>
+			<br>
+			<li><font size="4"><b>Controle do relatório</b></font></li>	
+			<b>Horário para fechar o atendimento - </b>Configure o horário para fechar o atendimento, este horário deve
+			estar dentro do intervalo de funcionamento do sistema, caso o sistema estiver desligado o fechamento 
+			não será realizado. O fechamento do atendimento é o momento em que os tickets são encerrados para liberar 
+			espaço para novos tickets, somente os tickets ainda com tempo de vida serão preservados.<br>
+			<b><i>Atenção - </i></b>A impressora de tickets, grava todas as senhas chamadas em memória respeitando os 
+			ranges de numeração programados na configuração do atendimento, e não faz gravação sobreposta em tickets 
+			que ainda não foram encerrados ou cancelados para preservação dos dados para o relatório.<br>
+			<b>Gravar arquivo .CSV de relatório - </b>Habilite esta opção para que o arquivo do relatório seja criado
+			após o fechamento do atendimento. Ao habilitar esta opção fique atento ao espaço de memória disponível para 
+			gravar arquivos, caso o espaço seja insuficiente será necessário formatar a memória para liberar espaço.
+			Note que com esta opção ativada o sistema não será fechado enquanto não conseguir gravar o arquivo.
+			<br>
+			<br>
+			<li><font size="4"><b>Modo de uso da impressora de tickets</b></font></li>	
+			<ul>
+			<li><b><i>Modo Servidor</i></b> - Armazena todas as informações do atendimento, imprime senhas, responde a solicitações 
+			de painéis de senhas, teclados e softwares de chamada e gera arquivos de relatório.<br></li>
+			<li><b><i>Modo Cliente</i></b> - Solicita senhas para um outro dispositivo que esteja configurado como servidor, e 
+			apenas imprime o número do ticket recebido para o cliente em outro local.<br></li>
+			</ul><br>
+			<li><font size="4"><b>Endereço IP do servidor (modo cliente)</b></font></li>				
+			Em modo cliente, a impressora depende de uma outra impressora 
+			que esteja configurada como servidor, informe aqui qual o IP deste servidor.<br>
+			<br>
+			<li><font size="4"><b>Informações de fila</b></font></li>	
+			<b><i>Enviar informações de fila</i></b> - Habilita o envio de informações de número de pessoas na fila e 
+			tempo de espera em cada atendimento. Esta informãção é utilizada por softwares de chamada para atendimento.<br>
+			<br>
+			<li><font size="4"><b>Interface de envio</b></font></li>	
+			<b><i>Escolha a interface</i></b> - Indica qual meio de comunicação será utilizado para enviar informações 
+			de fila ou requisições de ticket quando em modo cliente. Esta configuração não se aplica a respostas do modo 
+			servidor.<br>
+			<br>
+		  	<font size="5"><center><u><b>Departamentos</b></u></font></center>
+			<br>
+			<li><font size="4"><b>Escolha do departamento</b></font></li>				
+			Escolha um departamento, esta impressora fornece 12 opções, onde cada um atende a uma determinada faixa de números 
+			de tickets, que serão atendidos por usuários numerados de 1 a 99, estude o melhor modo de atender seus clientes.<br>
+			<br>
+			<li><font size="4"><b>Status do botão na impressora</b></font></li>		
+			Habilita o departamento e permite que os usuários do sistema possam chamar 
+			os números de tickets,  quando desabilitado nenhum número será chamado neste departamento.<br>
+			<br>
+			<li><font size="4"><b>Nome</b></font></li>					
+			Nome do departamento, este nome será exibido no ticket entregue ao cliente.<br>
+			<br>
+			<li><font size="4"><b>Letra do ticket</b></font></li>						
+			Caso o painel eletrônico de chamada possua o caractere alfa-numérico, você poderá definir 
+			aqui uma letra para identificar com mais clareza o departamento.<br>
+			<br>
+			<li><font size="4"><b>Faixa de números do ticket</b></font></li>					
+			Define o intervalo de números que o departamento irá atender, os tickets serão 
+			emitidos em ordem crescente e sequêncial do número inicial ao final, caso a numeração chegue ao último número ela 
+			será reiniciada no primeiro número no próximo ticket, porém nenhum número repetido será emitido, para que o sistema 
+			volte a emitir um mesmo número ja usado, antes deve ser gerado um relatório. Os relatórios são gerados automáticamente 
+			1 vez ao dia para controle de histórico de atendimento.<br>
+			<br>
+			<li><font size="4"><b>Encerrar ticket automático</b></font></li>					
+			Estas opções permitem que o ticket seja finalizado automáticamente ao chamar um 
+			próximo número ou ao gerar o relatório,	quando o usuário esquecer de pressionar o botão encerrar, finalizar o ticket 
+			significa gravar o horário de término de atendimento e mudar o status para "atendido", estas informações são mostradas 
+			no relatório.<br>
+			<br>
+			<li><font size="4"><b>Esquema de chamada</b></font></li>				
+			Define a proporção de chamada entre clientes normais e preferênciais, a alteração pode ser 
+			feita a qualquer momento para agilizar o atendimento.<br>
+			<br>
+			<li><font size="4"><b>Ajudar departamentos</b></font></li>						
+			Permite escolher escolher um ou dois departamentos para ajudar, ou ajudar o departamento 
+			de maior fila.<br>
+			<br>
+			<ul>
+			<li><b><i>Ignorar dptos de ajuda e procurar maior fila</i></b> - Ajuda sempre a maior fila entre os dptos, mesmo
+			 que exista um dpto de ajuda configurado.<br></li>
+			</ul><br>
+			<li><font size="4"><b>Esquema de ajuda</b></font></li>				
+			Quando configurado um dos esquemas de ajuda, define a proporção de chamada entre clientes 
+			locais e do outro departamento, a alteração pode ser feita a qualquer momento para agilizar o atendimento.<br>
+			<br>
+			<ul>
+			<li><b><i>Ajudar quando acabarem os tickets do dpto local</i></b> - Ajuda o outro departamento escolhido somente  
+			quando acabarem todos os tickets na fila local, isto garante que toda a fila local vai ser atendida antes de ajudar.<br></li>
+			<li><b><i>Antes de ajudar, verificar o tempo de espera local</i></b> - Com esta opção ativada o sistema verifica
+			os tempos de espera no dpto local e no dpto de ajuda, para garantir que o cliente na fila local que chegou mais cedo 
+			sempre seja atendido antes de ajudar o outro dpto. Ou seja, somente ajuda um cliente de outro dpto se este chegou mais 
+			cedo.<br></li>
+			<li><b><i>Alternar o esquema de ajuda por usuários</i></b> - O padrão é alternar entre chamada local e chamada de ajuda
+			entre so deptos, ou seja se estiver com esquema 1x1, chama um ticket do dpto1 e outro do dpto2, não importa qual o atendente. 
+			Com esta opção, o sistema alterna os tickets para cada usuário, ou seja, se estiver no esquema 1x1 e o usuário 3 chamou 
+			um ticket local, a próxima chamada deste usuário vai ser ajudando o outro departamento, independente das outras chamada 
+			já feitas pelos outros usuários do mesmo dpto.<br></li>			
+			</ul><br>
+			<li><font size="4"><b>Usuários do departamento</b></font></li>						
+			Selecione quais dos usuários deverão atender a este departamento, ao incluir um 
+			usuário ele automáticamente é retirado de outro departamento ao qual pertencia antes.<br>
+			<br>
+			<li><font size="4"><b>IP do display de chamada </b></font></li>					
+			Quando estiver usando acionadores de R.F. inteligentes para chamar a senha será 
+			necessário fazer esta configuração, como estes acionadores se comunicam diretamente com a impressora o endereço IP do 
+			painel eletrônico de chamada deverá ser informado.<br>
+			<br>
+			<li><font size="4"><b>Preferêncial do departamento</b></font></li>					
+			Permite que o botão da impressora relativo a este departamento, seja usado para 
+			emitir senhas preferênciais de outro departamento, neste caso nenhuma das configurações feitas acima serão 
+			usadas.<br>
+			<br>
+		  	<font size="5"><center><u><b>Box do usuário</b></u></font></center>
+			<br>
+			Esta opção permite montar uma relação entre usuário e número do box de atendimento, permitindo que usuários de um 
+			sistema de atendimento com muitos setores, possam chamar um mesmo número de box em seus respectivos displays de 
+			chamada. Ex: Usuário 1 atende no Box 10 e Usuário 2 atende também atende no box 10 porém de outro setor.<br>
+			<br>
+			<li><font size="4"><b>Selecione o usuário</b></font></li>					
+			Permite selecionar qual usuário terá o box configurado.<br>
+			<br>
+			<li><font size="4"><b>Configure o box do usuário</b></font><br></li>
+			Permite escolher qual o box do usuário previamente escolhido, a configuração de	fábrica é o número do box igual 
+			ao número do usuário. Clique no botão Confirmar para alterar.<br>
+			<br>
+			<li><font size="4"><b>Configuração atual: Box X Usuário</b></font><br></li>
+			Exibe uma lista de todos os usuários e respectivo box.<br>
+			<br>
+		  	<font size="5"><center><u><b>Ticket</b></u></font></center>
+			<br>
+			<li><font size="4"><b>Cabeçalho com logotipo</b></font><br></li>
+			Habilite a impressão do logotipo no cabeçalho do ticket, caso ainda não exista nenhum 
+			arquivo gravado o logotipo impresso será o padrão Wyma, verifique antes se ja foi gravado o arquivo de sua empresa o 
+			nome do arquivo de logotipo aparece na listagem de arquivos como logo.bmp.<br>
+			<br>
+			<li><font size="4"><b>Letra do ticket</b></font><br></li>			
+			Habilite a impressão da letra do departamento antes do número do ticket, antes de habilitar 
+			esta opção verifique se a letra ja foi configurada no departamento e se o painel eletrônico pode mostrar a letra.<br>
+			<br>
+			<li><font size="4"><b>Comprimento do número</b></font><br></li>					
+			Determine aqui quantos digitos o número do ticket vai exibir, deve ser igual ao 
+			painel.<br>
+			<br>
+			<li><font size="4"><b>Altura do número </b></font><br></li>				
+			Escolha o tamanho do número do ticket, existem dois tamanhos: 5mm e 15mm.<br>
+			<br>
+			<li><font size="4"><b>Corte do papel </b></font><br></li>					
+			Defina como vai ser cortado o papel após imprimir o ticket.<br>
+			<br>
+			<li><font size="4"><b>Número de vias</b></font><br></li>						
+			Defina quantas vias de ticket devem ser impressas.<br>
+			<br>
+			<li><font size="4"><b>Linhas do cabeçalho</b></font><br></li>				
+			<b>Opções de mensagem - </b>Escolha qual informação vai ser exibida em cada linha do cabeçalho.<br>
+			<b>Mensagem - </b>Quando selecionado Mensagem nas opções, este será o texto impresso no ticket. Normalmente é o 
+			nome da empresa, a terceira linha do cabeçalho será usada para informar que o ticket é preferêncial, quando for este 
+			tipo de ticket.<br>
+			<br>
+			<li><font size="4"><b>Linhas do rodapé</b></font><br></li>		
+			<b>Opções de mensagem - </b>Escolha qual informação vai ser exibida em cada linha do cabeçalho.<br>
+			<b>Mensagem - </b>Quando selecionado Mensagem nas opções, este será o texto impresso no ticket.<br>
+			<br>
+		  	<font size="5"><center><u><b>Rede</b></u></font></center>
+			<br>
+			Configure os parâmetros de sua rede intranet, caso tenha um servidor DHCP, a impressora poderá ser 
+			automáticamente configurada em sua rede. Para visualizar o IP pressione as teclas 1 e 12 ao mesmo
+			tempo durante 3 segundos.<br>
+			<br>
+		  	<font size="5"><center><u><b>Versão</b></u></font></center>
+			<br>
+			Verifique a versão de seu dispositivo. A opção autenticação permite proteger suas informações, grave 
+			uma senha de acesso para acessar o servidor.<br>
+			<br>
+		  	<font size="5"><center><u><b>Personalizar</b></u></font></center>
+			<br>
+			Crie uma apresentação com imagens para a tela do display LCD, salve dois arquivos bitmaps monocromáticos 
+			em formato 128x56 e deixe as imagens passarem informações para os clientes. Use uma imagem monocromática
+			para o logotipo do ticket.<br>
+			<br>
+		  	<font size="5"><center><u><b>Arquivos</b></u></font></center>
+			<br>
+			Faça o download de relatórios de atendimento e salve em seu computador, os arquivos são criados em
+			um formato que permite abrir o arquivo em programas de planilha eletrônica como o Excel da Microsoft.<br>
+			<br>
+		  	<font size="5"><center><u><b>Tempo Real</b></u></font></center>
+			<br>
+			Visualize as informações básicas de atendimento em tempo real.<br>	
+			<br>
+		  	<font size="5"><center><u><b>Formatar</b></u></font></center>
+			<br>
+			<li><font size="4"><b>Formatar o sistema de arquivos</b></font><br></li>		
+			Os arquivos de imagens do sistema e relatórios são gravados em um sistema de arquivos, quando formatamos 
+			o sistema de arquivos todos os arquivos são apagados e o sistema é reconstruído para otimização, quando 
+			devemos fazer isto:<br>
+			1 - Formate o sistema de arquivos antes do primeiro uso.<br>
+			2 - Quando o sistema de arquivos FAT estiver corrompido. Identificando um sistema corrompido: listagem de 
+			arquivos com nomes irreconhecidos ou excessiva demora na leitura ou gravação.<br>
+			3 - Formate o sistema de arquivos para uma melhor performance de leitura dos arquivos gravados, assim que 
+			perceber um desempenho mais baixo na abertura dos arquivos de relatório, salve todos os arquivos em 
+			seu computador, formate o drive e grave novamente somente os arquivos de imagens do sistema, este procedimento
+			otimiza o tempo de gravação e leitura dos arquivos e libera espaço no dirve. Quando estiver utilizando a memória 
+			Flash interna a capacidade será bem menor e o desempenho mais baixo que o cartão SD.<br>
+			<br>
+			<li><font size="4"><b>Inicializar a numeração das senhas</b></font><br></li>		
+			Inicializa a numeração dos tickets de todos os departamentos, mas cuidado esta opção descarta todos os tickets 
+			em atendimento, todas os tickets que estiverem na fila de espera serão eliminados, se não for o primeiro uso,
+			certifique-se de que não há mais clientes para atender.<br>
+			<br>
+		  	<font size="5"><center><u><b>Atualizar</b></u></font></center>
+			<br>
+			Permite atualizar o firmware da impressora por uma versão mais recente. Para verificar a versão do firmware
+			clique na página inicial em Versão.<br>
+			<br>
+			<font size="5"><center><u><b>Contato</b></u></center></font><br>
+			Em caso de dúvidas entre em contato com o nosso Departamento de Suporte Técnico.<br>
+			FONE/FAX : (0XX11) 3274-7011<br>
+			e-mail :	sacnet@wyma.com<br>
+			<textarea id="myText" rows=5 cols=80>Envie suas dúvidas via e-mail aqui...
+			</textarea><br>
+			<button onclick="sendMail(); return false">Enviar</button>		
+			<br><br><br>
+			</font></ul>	
+        </td>
+	   </tr></table>
+      </center>
+     </td>
+    </tr></tbody></table></center>
+   </div></td></tr>
+ <tr bgColor=#C8C8C8>
+  <td style="border-top: 1px solid #000080" colSpan=5 height=20 width="805">
+   <p align=center><font face="Verdana" size="1">Direitos autorais reservados 
+   <a href="http://www.wyma.com/">WYMA Tecnologia</a></font></p>
+  </td>
+ </tr></tbody></table>
+</div></body>
+</html>

@@ -1,0 +1,13 @@
+
+Functionality:                                                   
+ - Clock Settings:
+   - XTAL                   =  12 MHz
+   - PLL                    = 400 MHz
+   - processor clock = CCLK = 100 MHz
+   - USB clock              =  48 MHz
+   - CCLK / 4 clock         =  25 MHz
+
+USB HID (Human Interface Device):
+
+The USB HID is recognized by the host PC running Windows
+which will load a generic HID driver.

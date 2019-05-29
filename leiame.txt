@@ -1,0 +1,362 @@
+ _______________________________________________________________________________________________________________________ 
+|																														|
+|	Projeto: 	MIG			Versão: 2.12																				|
+|																														|
+|	Descrição:	Firmware para impressora servidor de tickets.															|
+|																														|
+|	CPU:		PCI0003																									|
+|																														|
+|	INTERFACE:	ETHERNET através de comandos UDP do protocolo Wyma, ETHERNET através de WEB browser e Teclado.	 		|
+|																														|
+|	IP DEFAULT: 192.168.0.160																							|
+|																														|
+|	PROTOCOLO:	Protocolo Wyma V1																						|
+|																														|
+|																														|
+|	ATENÇÃO: 	A data de liberação da revisão é quando se grava na pasta:												|
+|				\\INTRANET \ PRODUTOS \ NOME DO PRODUTO	\ FIRMWARES \ NOME DO PRODUTO_Vn_Revn							|
+|																														|
+|_______________________________________________________________________________________________________________________|
+|Rev.	|		Descrição													| Data		| Revisado por	| Aprovado por	|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.00 	|	Revisão inicial, usando protocolo Wyma V1 Rev.10, usando BOOT	|10/10/2015	|Ricardo Tavares|				|
+|		|	v1 rev.0														|           |            	|               |
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.01 	|	1 - Incluido controle para habilitar a geração de arquivo .CSV,	|			|				|				|
+|		|	 desligando o controle, mesmo sem gravar o arquivo as senhas com|30/11/2015 |Ricardo Tavares|				|
+|		|	 tempo de vida esgotado são eliminadas para liberar os números 	|			|				|				|
+|		|	 dos tickets.													|			|				|				|
+|		|	2 - Incluido no MENU do MIG: 								 	|			|				|				|
+|		|	 -Horário de operação								 			|			|				|				|
+|		|	 -Horário para fechamento do atendimento.						|			|				|				|
+|		|	 -Controle para habilitar a geração do arquivo .CSV				|			|				|				|
+|		|	 -Reinicialização dos números dos tickets.						|			|				|				|
+|		|	3 - Corrigido busca dos arquivos de personalização quando usando|			|				|				|
+|		|	 SDCARD usando o diretório "SYS\"								|			|				|				|
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.02	|	1 - Incluído comando de calibração do touch quando desliga 		|17/02/2016 |David Dantas	|				|
+|		|		no modo automático ou manualmente.	   						|			|				|				|
+|		|		(funcionamento com o firmware MIG6TOUCH_V2.0).				|			|				|				|
+|		|	2 - Quando o (horário de desligar < horário de ligar)	não		|			|				|				|
+|		|		funcionava corretamente, foi corrigido em  "WaitPowerOn();"	|			|				|				|
+|		|	3 - Corrigido a função de desligar pressionando botao 6			|			|				|				|
+|		|		na função "main(); no if de leitura do teclado"  e em 		|			|				|				|
+|		|		"Process_Queue()"											|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.03 	|	1 - Em "App.c" incluido comando infoAtd para enviar informações |25/02/2016	|Ricardo Tavares|				|
+|		|		de fila e tempo de espera dos atendimentos.					|			|				|				|
+|		|		Somente este comando infoAtd tem uma nova porta UDP: 25501	|			|				|				|
+|		|		Opção para habilitar envio em página http "System.cgi"		|			|				|				|
+|		|	2 - Alterada pagina http "Real" para mostrar a previsão de		|			|				|				|
+|		|		espera com base nas 3 últimas senhas.						|			|				|				|
+|		|	3 - Em "Usercomm.c" modificadas funções de acordo com protocolo |			|				|				|
+|		|		REV.12 para permitir escolher o departamento.				|			|				|				|
+|		|		Usando LIB COMM	V5											|			|				|				|
+|		|	4 - Em "QUeue.c" foram alteradas funções de pesquisa na flash	|			|				|				|
+|		|		para permitir escolher o departamento.						|			|				|				|
+|		|	5 - Em "Queue.c" foi acrescentado os arrays "lastCallDpto" e 	|			|				|				|
+|		|		"lastPrioDpto" para permitir a pesquisa rapida em RAM tambem|			|				|				|
+|		|		por departamento.											|			|				|				|
+|		|		A função "Find_ticketNum" é quem grava nos novos arrays.	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.04 	|   1 - Atualizada a LPC176xIMP.lib v2.0							|			|				|				|
+|		|	2 - Em "App.c" incluidas funções para impressão da senha gráfica|15/04/2016 |David Dantas	|				|
+|		|	3 - Criado o arquivo GRAPHICS.h onde se encontram os gráficos	|			|				|				|
+|		|		de telas do lcd e caracteres para impressão.				|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.05 	|	1 - Implementada WEBPage V1.00 para Wifi, no arquivo HTTP.c.	|			|				|				|
+|		|	2 - Atualizada com a lib LPC176xIMP.lib v2.1, para imprimir		|15/08/2016	|Ricardo Tavares|				|
+|		|		no rodapé a mensagem "Direitos autorais reservados - WYMA"	|			|				|				|
+|		|	3 - Acrescentadas páginas web "callnext.cgi" e "callticket.cgi" |			|				|				|
+|		|		para chamada de senha direto no browser..					|			|				|				|
+|		|	4 - Em HTTP_CGI.c movidos os parâmetros de rede da função de	|			|				|				|
+|		|		método "GET" para a função do método "POST" e acrescentados	|			|				|				|
+|		|		parâmetros das novas páginas callnext.cgi e callticket.cgi.	|			|				|				|
+|		|	5 - Inserido ícone "W" em todas as páginas http					|			|				|				|
+|		|	6 - Modificada página label.cgi para inverter cores				|			|				|				|
+|		|	7 - Inserido novos parâmetros "Imprimir Procotolo atendimento"	|			|				|				|
+|		|		e "IP do servidor de protocolo" na página "system.cgi"	e	|			|				|				|
+|		|		acrescentados comandos de envio e recebimento nos arquivos	|			|				|				|
+|		|		app.c e usercomm.c											|			|				|				|
+|		|	8 - Na pagina WEB em "Formatar", agora tem opção de restaurar	|			|				|				|
+|		|		Configuração padrão Wyma ou criar compilaão especial de 	|			|				|				|
+|		|		cliente nesta revisão com logos "Casas Bahia"				|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.06 	|	1 - Quando opção "Gerar arquivo CSV" na página http "System.cgi"|			|				|				|
+|		|	estava desabilitada ao fechar o atendimento a mensagem "porfavor|11/10/2016	|Ricardo Tavares|				|
+|		|	aguarde" ficava permanentemente na tela. Para corrigir foi 		|			|				|				|
+|		|	alterada a rotina de verificação dos tickets em "REPORT.C" na	|			|				|				|
+|		|	função StateMachine_ticket() com status "_FLIGNORE"				|			|				|				|
+|		|																	|			|				|				|
+|		|	2 - Problema na contagem de fila ao gerar o relatório a contagem|			|				|				|
+|		|	ficava com 1 ticket a menos, foi corrigido no arquivo "QUEUE.c"	|			|				|				|
+|		|	renomeando a função "Check_keepLiveTicket" para "Close_Ticket"	|			|				|				|
+|		|	e criando nova função somente para verificação: 				|			|				|				|
+|		|	"Check_liveTicket".												|			|				|				|
+|		|																	|			|				|				|
+|		|	3 - Em "Report.c" na função "StateMachine_ticket" removida		|			|				|				|
+|		|	condição "se STAT_FILE==FL_SAVE" pois ja estava dentro de uma 	|			|				|				|
+|		|	condição idêntica.												|			|				|				|
+|		|																	|			|				|				|
+|		|	4 - Em "QUEUE.c" na função "New_ticketNumber" removida condição |			|				|				|
+|		|	"Se MODO_SERVER" quando vai verificar se a senha ja existe 		|			|				|				|
+|		|	por que somente entra nesta função quando é server..			|			|				|				|
+|		|	E também foi adicionada uma condição extra para não emitir o	|			|				|				|
+|		|	ticket, em vez de de verificar somente se o número	ja existia,	|			|				|				|
+|		|	verifica-se também se o ticket ainda não foi atendido, caso		|			|				|				|
+|		|	o ticket ja foi atendido pode-se emitir outro ticket..			|			|				|				|
+|		|																	|			|				|				|
+|		|	5 - Em "system.CGI" a opção "Tempo de vida do ticket" indicava	|			|				|				|
+|		|	o tempo de: "1 a 20 horas", foi corrigido para: "1 a 18 Horas"	|			|				|				|
+|		|																	|			|				|				|
+|		|	6 - Em "USERCOMM.c" foi acrescentado tratamento para requisição	|			|				|				|
+|		|	do tipo "SET" para a função	"cmd_ticketDepUser"	para permitir	|			|				|				|
+|		|	ao cliente configurar os atendentes por dll.					|			|				|				|
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.07 	|	1 - Em "dep.cgi" foi incluida opção para habilitar o sistema de |19/10/2016	|Ricardo Tavares|				|
+|		|	ajuda somente se acabarem os tickets do departamento em uso		|			|				|				|
+|		|	ignorando a regra.												|			|				|				|
+|		|	Também foi	modificado as opções do esquema "pref x normal"	e do|			|				|				|
+|		|	"local x ajuda" para opções fixas: 10x1, 9x1, 8x1 ...para evitar|			|				|				|
+|		|	combinações que não funcionam.									|			|				|				|
+|		|																	|			|				|				|
+|		|	2 - Em app.h foi incluida o array depOptionHlp[] para guardar	|			|				|				|
+|		|	as opções de excessão as regras do preferencial e da ajuda, isto|			|				|				|
+|		|	afeta os equipamentos antigos que perdem a configuração da ajuda|			|				|				|
+|		|	após atualizar para esta versão nova.							|			|				|				|
+|		|																	|			|				|				|
+|		|	3 - Em QUEUE.c foram alteradas as funções: "Get_ticketNum" para	|			|				|				|
+|		|	tratar a opção nova de ignorar a regra de ajuda e ajudar outro	|			|				|				|
+|		|	depto somente quando acabarem os tickets  e  "Check_DptoHelp"	|			|				|				|
+|		|	para ignora os departamentos de ajuda e ajudar a maior fila 	|			|				|				|
+|		|	usando o novo array de excessões "depOptionHlp".				|			|				|				|
+|		|																	|			|				|				|
+|		|	4 - Em USERCOMM.C foram alterados os pacotes de dados de tickets|			|				|				|
+|		|	na função "Response_InfoTicket" que afeta diretamente as outras |			|				|				|
+|		|	funções: "cmd_ticketNum" em método "GET", "cmd_ticketSta" em  	|			|				|				|
+|		|	método "SET" e a função "cmd_ticketLast" no método "GET".		|			|				|				|
+|		|	verifique opções compatíveis dos firmwares SENHAS, TOPM e JM..	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.08 - |	1 - Em "USERCOMM.C" foi Corrigido pacote de dados de resposta na|07/11/2016	|Ricardo Tavares|				|
+|1.09	|	função "Response_InfoTicket" quando não tinha nenhum ticket para|			|				|				|
+|		|	devolver os valores errados eram devolvidos, também foi 		|			|				|				|
+|		|	corrigido o tamanho do array de 47 para 53 bytes que é o tamanho|			|				|				|
+|		|	máximo da resposta com as alterações.							|			|				|				|
+|		|																	|			|				|				|
+|		|	2 - Em "QUEUE.c" na função "New_ticketNumber" foi acrescentada 	|			|				|				|
+|		|	uma verificação de número do departamento para ver se o			|			|				|				|
+|		|	ticket ja existe, corrigindo falha na emissão de ticket com		|			|				|				|
+|		|	mensagem na tela: "TICKETS ESGOTADOS"							|			|				|				|
+|		|																	|			|				|				|
+|		|	3 - Em Main.c alterada lógica para desligar sistema e para gerar|			|				|				|
+|		|	relatório. Antes fazia isto apenas no segundo zero (0), agora	|			|				|				|
+|		|	faz durante o minuto programado para não perder o evento caso	|			|				|				|
+|		|	o sistema estiver ocupado										|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.10 	|																	|08/03/2017	|Ricardo Tavares|				|
+|		|	1 - Os dados do atendimento agora utilizam horários UTC que 	|			|				|				|
+|		|	podem informar hora e data de cada evento: impressão, chamada e	|			|				|				|
+|		|	encerramento. 													|			|				|				|
+|		|																	|			|				|				|
+|		|	2 - O relatório foi modificado excluindo a coluna 				|			|				|				|
+|		|	"DATA" e modificando colunas "CHEGADA", "INICIO" e "FIM"		|			|				|				|
+|		|	para mostrar hora e data (dia, mês e ano).						|			|				|				|
+|		|																	|			|				|				|
+|		|	3 - Opção nova para verificação de horário antes de usar esquema|			|				|				|
+|		|	de ajuda para não pular tickets que chegaram antes no próprio	|			|				|				|
+|		|	depto ao chamar ajudar outro dpto.								|			|				|				|
+|		|																	|			|				|				|
+|		|	4 - Fecha atendimentos abertos ao ligar - status="CLOSEDINIT"	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.11	|	1 - Variavel de contagem "contSchHlp" com mais memória (99) para|24/03/2017	|Ricardo Tavares|				|
+|		|	ter opção de fazer o esquema por caixas "ou" por departamentos	|			|				|  				|
+|		|																	|			|				|				|
+|		|	2 - Incluida variavel na configuração "optSchHlp[]" para indicar|			|				|				|
+|		|	se esta trabalhando com caixas ou departamentos no esquema de	|			|				|				|
+|		|	ajuda.															|			|				|				|
+|		|																	|			|				|				|
+|		|	3 - Corrigido função para desabilitar itens da página "dep.cgi"	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.12	|	1 - Alterado no arquivo QUEUE.c a função "Set Opinion" para não |06/09/2017	|Ricardo Tavares|				|
+|		|	verificar o departamento do usuário para ficar em conformidade	|			|				|  				|
+|		|	com o software Call Ticket que permite alternar o departamento	|			|				|				|
+|		|	do usuário para chamar em outra fila. 							|			|				|				|
+|		|																	|			|				|				|
+|		|	2 - Departamento 12 não aceitava pesquisa devido a condição		|			|				|				|
+|		|	na função "Get_ticketNum" no arquivo QUEUE.c",  a condição foi	|			|				|				|
+|		|	corrigida para "<=MAXDEP" para aceitar o valor 12=MAXDEP		|			|				|				|
+|		|																	|			|				|				|
+|		|	3 - Alterada no arquivo QUEUE.c a função "cmd_ticketSta" para 	|			|				|				|
+|		|	sem ter feito o atendimento, para sistema de encaminhamento.	|			|				|				|
+|		|	encerrar o ticket mesmo.										|			|				|				|
+|		|																	|			|				|				|
+|		|	4 - Alterada no arquivo QUEUE.c função "New_ticketNumber_TDCli"	|			|				|				|
+|		|	retirado o encerramento de ticket, os sistema que chamarem		|			|				|				|
+|		|	senhas aleatóriamente devem enviar o comando para encerrar antes|			|				|				|
+|		|	de chamar o ticket	.											|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.13	|	1 - Incluidas opções na página web "ticket.cgi" para mostrar    |29/11/2017	|Ricardo Tavares|				|
+|		|	somente data e somente hora no ticket.							|			|				|				|
+|		|	2 - Incluida nova opção de formato de número de ticket com		|			|				|				|
+|		|	código de barras. Por enquanto somente CODIGO39 esta habilitado.|			|				|				|
+|		|	3 -Informações acima alteradas na lib "IMP.lib" V2.02 com as 	|			|				|				|
+|		|	novas opções do ticket impresso.								|			|				|				|
+|		|	4 - Alterada página "system.cgi" para incluir a nova opção que	|			|				|				|
+|		|	permite inicializar os tickets ao gerar o relatório, a condição	|			|				|				|
+|		|	obrigatória para a inicialização é o tempo de vida do ticket 	|			|				|				|
+|		|	estar configurado com o valor 0.								|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|1.14	|	*** Correção para MIG antiga com PCI0110 *** 					|19/04/2018	|Ricardo Tavares|				|
+|		|	1 - Correção do problema:   Horário no relatório estava 1 dia   |			|				|				|
+|		|	adiantado. Devido a erro na rotina de cálculo de horário UTC.  	|			|				|				|
+|		|	Ação corretiva:  Atualizada a lib rtc para versão 4            	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.00	|	1 - Alteração de placa do MIG de PCI0110 para PCI0003-R14+   	|06/12/2017	|Ricardo Tavares|				|
+|    	|	2 - Alterada a lib do lcd para versão 2.00 com spi em pinagem 	|          	|               |				|
+|		|	nova e pinos CS1 e CS2 para o gráfico							|			|				|				|
+|		|	3 - Alteração do tipo de teclado para teclado CPU na lib KEY	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.01	|	1 - Incluida pasta de arquivo "USB" com todos os arquivos da    |18/12/2017	|Ricardo Tavares|				|
+|    	|	interface USB device para ler o teclado remoto através de USB. 	|          	|               |				|
+|		|	2 - Em "app.c incluidos comandos para inicializar o USB.		|			|				|				|
+|		|	3 - Nova compilação da lib COMM para ter interfaces UDP, UART0,	|			|				|				|
+|		|	UART1, WIFI e USB com novo comando status_key.					|			|				|				|
+|		|	4 - Em "UserComm.c" implementado comandos "status_key" para ler	|			|				|				|
+|		|	as teclas pressionadas através da USB; "Parametros do RF" para	|			|				|				|
+|		|	ler e configurar RF; "Status do papel" para ler status de papel	|			|				|				|
+|		|	no MIG além de verificar horário e data configurados; "status e | 			|				|				|
+|		|	nome do dpto" para verificar se o dpto esta habilitado.			|			|				|				|
+|		|	5 - Modificada função "Read_KeyModel" em "app.c" para ler tecla	|			|				|				|
+|		|	física ou tecla remota via USB.									|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.02	|	1 - Implementado comando 6.8 (GET) - Energia do dispositivo		|16/01/2018	|Ricardo Tavares|				|
+|		|	2 - Retirado rotinas liga desliga, ficando apenas como um status|			|				|				|
+|		|	para indicação no tablet, mig padrão não tem mais display.		|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.03	|	1 - Incluida opção na página WEB para inverter a impressão do	|07/03/2018	|Ricardo Tavares|				|
+|		|	do ticket, na página system.cgi, foi adicionada a LIB IMP de  	|			|				|				|
+|		|	versão 2.03 com a funcionalidade de inversão, na impressão da 	|			|				|				|
+|		|	senha foi implementado somente o modo "Caractere Expandido". O	|			|				|				|
+|		|	parâmetro de inversão é passado através de novo elemento da 	|			|				|				|
+|		| 	estrutura TICKET												|			|				|				|
+|		|																	|			|				|				|
+|		|	Problema conhecido: Alguns gráfico (depende da largura), são 	|			|				|				|
+|		|	impressos deformados.											|			|				|				|
+|		|	Opções de modo gráfico, modo código de barrase e modo texto		|			|				|				|
+|		|	simples ainda não foram totalmente implementados e não estão 	|			|				|				|
+|		|	bloqueados.														|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.04	|	1 - Implementado ticket modo gráfico invertido,                	|13/04/2018	|Ricardo Tavares|				|
+|		|	                                                              	|			|				|				|
+|		|	                                                              	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.05	|	1 - Correção do problema:   Horário no relatório estava 1 dia   |19/04/2018	|Ricardo Tavares|				|
+|		|	adiantado. Devido a erro na rotina de cálculo de horário UTC.  	|			|				|				|
+|		|	Ação corretiva:  Atualizada a lib rtc para versão 4            	|			|				|				|
+|		|	2 - Correção de senha reiniciando ao gerar o relatório			|			|				|				|
+|		|	faltava verificar condição configuravel na página system.cgi	|			|				|				|
+|		|	" if (cfg.zero)  "	e estava sempre zerando...					|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.06	|	1 - Correção do problema:   Letra da senha não estava repetindo |01/08/2018	|Ricardo Tavares|				|
+|		|	corretamente quando chamado pelo acionador RF, corrigido com   	|			|				|				|
+|		|	buffer de último dep chamado pelo usuario, assim através deste 	|			|				|				|
+|		|	numero ficam disponiveis todas informações do departamento.		|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.07	|	1 - Número de vias transferidos da página ticket.cgi para a     |20/08/2018	|Ricardo Tavares|				|
+|		|	página dep.cgi, agora as informações de número de vias de ticket|			|				|				|
+|		|	são feitas para cada departamento.                             	|			|				|				|
+|		|	2 - Nova opção para dpto prefer. que sempre é chamado antes  	|			|				|				|
+|		|	quando tiver tickets cadastrados.                         		|			|				|				|
+|		|	                                                           		|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.08	|	1 - Retirado códigos não utilizados para LCD, teclas e WIFI.	|21/09/2018	|Ricardo Tavares|				|
+|		|	2 - Incluido departamento 13 para tickets do +80				|			|				|				|
+|		|	3 - Incluido código de teclas para cadastros diferenciados:		|			|				|				|
+|		|			1-12 = Tickets normais (para dptos de 1 a 12)			|			|				|				|
+|		|			31-42 = Tickets Preferenciais (para dptos de 1 a 12)	|			|				|				|
+|		|			61 = Tickets +80 (para departamento 13)					|			|				|				|
+|		|	4 - Opção do departamento preferencial +80 modificada para ser	|			|				|				|
+|		|		apenas uma flag que habilita sempre buscar no novo dep. 13	|			|				|				|
+|		|	5 - Retirado a opção botão preferrêncial não é mais necessário	|			|				|				|
+|		|			devido ao TIG ter disponíveis botões próprios para		|			|				|				|
+|		|			os preferenciais. 										|			|				|				|
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|		|																	|			|				|				|
+|2.09	|	1 - Incluido na estrutura TKTINFO a "letra" do ticket          	|16/10/2018	|Ricardo Tavares|				|
+|		|		onde existe uma chamada de ticket não busca mais por uma	|			|				|				|
+|		|		letra fixa do departamento e sim pela letra na estrutura.	|			|				|				|
+|		|		A letra do departamento será verificada somente ao imprimir	|			|				|				|
+|		|		a primeira vez. 											|			|				|				|
+|		|	2 - Foi incluido o parametro "letra" na função callback 		|			|				|				|
+|		|		"cmd_ticketReNew" que é chamada no encaminhamento do ticket.|			|				|				|
+|		|	3 - Os itens 1 e 2 resolvem os problema de encaminhamento com 	|			|				|				|
+|		|		letra. O software Virtual Call V1.37 ou superior ja envia	|			|				|				|
+|		|		o comando com o parâmetro a mais.							|			|				|				|
+|		|	4 - Melhorada chamada por página http no endereço /callnext.cgi	|			|				|				|
+|		|		com visualização das filas e troca de departamentos.		|			|				|				|
+|		|	5 - Página tempo real com atualização automática				|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|2.10	|	1 - Logo do ticket, imagens 1 e 2 do lcd agora são gravadas na 	|23/11/2018	|Ricardo Tavares|				|
+|		|	    Flash, assim podemos formatar a memória dos relatórios após	|			|				|				|
+|		|	    o download.                                					|			|				|				|
+|		|	2 - A opção Restaurar configurações originais apenas fazem o que|			|				|				|
+|		|	    esta proposto a fazer, antes estava formatando também.		|			|				|				|
+|		|	3 - Status autenticação é possível alterar sem saber a senha 	|			|				|				|
+|		|		através do tig												|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|2.11	|	1 - Correção no arquivo REPORT.c incluindo tipo de ticket +80  	|30/04/2019	|Ricardo Tavares|				|
+|		|	    no relatorio..                                             	|			|				|				|
+|		|	2 - Corrigido DHCP, não estava reconhecendo.   					|			|				|				|
+|		|	3 - Retirado opções wifi das páginas                            |			|				|				|
+|		|	4 - Retirado telas 1 e 2 de apresentação da página "design.cgi" |			|				|				|
+|		|	                                                             	|			|				|				|
+|		|		              												|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
+|2.12	|	1 - Incluido controle para fila de vendas para cliente			|			|				|				|
+|		|		MegaIsenções												|			|				|				|
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|		|																	|			|				|				|
+|_______________________________________________________________________________________________________________________|
