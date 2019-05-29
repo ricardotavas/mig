@@ -1,0 +1,15 @@
+.\Obj\http_cgi.o: Keil\HTTP_CGI.c
+.\Obj\http_cgi.o: C:\Keil\\ARM\RV31\INC\Net_Config.h
+.\Obj\http_cgi.o: C:\Keil\\ARM\RV31\INC\RTL.h
+.\Obj\http_cgi.o: C:\Keil\\ARM\RV31\INC\File_Config.h
+.\Obj\http_cgi.o: C:\Keil\\ARM\RV31\INC\stdio.h
+.\Obj\http_cgi.o: C:\Keil\\ARM\RV31\INC\string.h
+.\Obj\http_cgi.o: .\Dep\RTC_CONFIG.h
+.\Obj\http_cgi.o: .\Dep\LCD_CONFIG.h
+.\Obj\http_cgi.o: .\Dep\IMP_CONFIG.h
+.\Obj\http_cgi.o: .\Dep\IAP_CONFIG.h
+.\Obj\http_cgi.o: .\Dep\COMM_CONFIG.h
+.\Obj\http_cgi.o: Keil\..\\APP.h
+.\Obj\http_cgi.o: Keil\..\\QUEUE.h
+.\Obj\http_cgi.o: Keil\..\\REPORT.h
+.\Obj\http_cgi.o: .\Dep\CRC16.h

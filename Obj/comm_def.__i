@@ -1,0 +1,1 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\Dep -I.\Keil -I.\USB -I "C:\Keil\\ARM\INC" -I "C:\Keil\\ARM\INC\NXP\LPC17xx" -DITFUDP -DITFUART0 -DITFUART1 -DITFUSB -DITFWIFI -DMIG -o ".\Obj\comm_def.o" --omf_browse ".\Obj\comm_def.crf" --depend ".\Obj\comm_def.d" "..\..\..\LIBRARY\LPC176x_COMM\V05_R06\COMM_DEF.c"

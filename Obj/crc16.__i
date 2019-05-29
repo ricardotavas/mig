@@ -1,0 +1,1 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\Dep -I.\Keil -I.\USB -I "C:\Keil\\ARM\INC" -I "C:\Keil\\ARM\INC\NXP\LPC17xx" -DITFUDP -DITFUART0 -DITFUART1 -DITFUSB -DMIG -o ".\Obj\crc16.o" --omf_browse ".\Obj\crc16.crf" --depend ".\Obj\crc16.d" "Dep\CRC16.c"

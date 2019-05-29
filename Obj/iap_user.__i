@@ -1,0 +1,1 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\Dep -I.\Keil -I "C:\Keil\\ARM\INC" -I "C:\Keil\\ARM\INC\NXP\LPC17xx" -DITFUDP -DITFUART1 -DITFWIFI -DMIG -o ".\Obj\iap_user.o" --omf_browse ".\Obj\iap_user.crf" --depend ".\Obj\iap_user.d" "..\..\..\LIBRARY\LPC176x_IAP\V02\IAP_USER.c"

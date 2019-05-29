@@ -1,0 +1,12 @@
+.\Obj\http.o: HTTP.c
+.\Obj\http.o: C:\Keil\\ARM\RV31\INC\stdio.h
+.\Obj\http.o: C:\Keil\\ARM\RV31\INC\File_Config.h
+.\Obj\http.o: C:\Keil\\ARM\RV31\INC\RTL.h
+.\Obj\http.o: .\Dep\IAP_CONFIG.h
+.\Obj\http.o: .\Dep\RTC_CONFIG.h
+.\Obj\http.o: .\Dep\COMM_CONFIG.h
+.\Obj\http.o: .\Dep\..\\APP.h
+.\Obj\http.o: .\Dep\..\\QUEUE.h
+.\Obj\http.o: .\Dep\..\\REPORT.h
+.\Obj\http.o: HTTP.h
+.\Obj\http.o: C:\Keil\\ARM\RV31\INC\string.h

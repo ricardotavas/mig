@@ -1,0 +1,9 @@
+.\Obj\imp_base.o: ..\..\..\LIBRARY\LPC176x_IMP\V02_R03\IMP_BASE.c
+.\Obj\imp_base.o: C:\Keil\ARM\INC\NXP\LPC17xx\LPC17xx.H
+.\Obj\imp_base.o: C:\Keil\\ARM\RV31\INC\core_cm3.h
+.\Obj\imp_base.o: C:\Keil\\ARM\RV31\INC\stdint.h
+.\Obj\imp_base.o: C:\Keil\\ARM\RV31\INC\core_cmInstr.h
+.\Obj\imp_base.o: C:\Keil\\ARM\RV31\INC\core_cmFunc.h
+.\Obj\imp_base.o: C:\Keil\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
+.\Obj\imp_base.o: .\Dep\UART_CONFIG.h
+.\Obj\imp_base.o: .\Dep\RTC_CONFIG.h
